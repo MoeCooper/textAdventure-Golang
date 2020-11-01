@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -50,8 +52,56 @@ func (node *storyNode) executeCommand(cmd string) *storyNode {
 		}
 		currentChoice = currentChoice.nextChoice
 	}
+	fmt.Println("I didn't get that.")
+	return node
+}
+
+// used to take in input
+var scanner *bufio.Scanner
+
+func (node *storyNode) playGame() {
+	node.display()
+	if node.choices != nil {
+		scanner.Scan()
+		node.executeCommand(scanner.Text()).playGame()
+	}
 }
 
 func main() {
+	scanner := bufio.NewScanner(os.Stdin)
 
+	start := storyNode{text: `
+		You are in a large room underground, 
+		carrying a large lit lantern. 
+		There are three passages in different directions 
+		that seem to lead out. 
+		North takes you to darkness
+		South appears to head to upstairs
+		West is seemingly a safe choice, with no darkness and 
+		goes straight onwards
+	`}
+
+	darkRoom := storyNode{text: `
+		It is pitch black, and cannot see anything. 
+	`}
+
+	darkRoomLit := {text: `
+		The dark passageway is lit by your lantern. 
+		You can continue North or head back South.
+	`}
+
+	bigTroll := storyNode{text: `
+		While walking in the dark, you are eaten by a monster troll!
+	`}
+
+	trap := storyNode{text: `
+		You are heading down the path when suddenly, a trap door
+		falls open and you fell inside!
+	`}
+
+	treasureRoom := storyNode{text: `
+		You arrive to a small chamber, filled with treasure!!
+	`}
+
+	
 }
