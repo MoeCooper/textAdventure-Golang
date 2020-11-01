@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 // linked list
 type choices struct {
@@ -39,10 +42,12 @@ func (node *storyNode) display() {
 	}
 }
 
-func (node* storyNode) executeCommand (cmd string)  *storyNode {
+func (node *storyNode) executeCommand(cmd string) *storyNode {
 	currentChoice := node.choices
 	for currentChoice != nil {
-		if strings.ToLower(currentChoice.cmd) == strings.ToLower(cmd)
+		if strings.ToLower(currentChoice.command) == strings.ToLower(currentChoice.command) {
+			return currentChoice.nextNode
+		}
 		currentChoice = currentChoice.nextChoice
 	}
 }
