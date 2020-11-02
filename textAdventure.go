@@ -85,7 +85,7 @@ func main() {
 		It is pitch black, and cannot see anything. 
 	`}
 
-	darkRoomLit := {text: `
+	darkRoomLit := storyNode{text: `
 		The dark passageway is lit by your lantern. 
 		You can continue North or head back South.
 	`}
@@ -103,5 +103,18 @@ func main() {
 		You arrive to a small chamber, filled with treasure!!
 	`}
 
-	
+	start.addChoice("N", "Go North", &darkRoom)
+	start.addChoice("S", "Go South", &darkRoom)
+	start.addChoice("W", "Go West", &trap)
+
+	darkRoom.addChoice("S", "Try to go back south", &bigTroll)
+	darkRoom.addChoice("O", "Turn on your lantern", &darkRoomLit)
+
+	darkRoomLit.addChoice("N", "Go North", &treasureRoom)
+	darkRoomLit.addChoice("S", "Go back South", &start)
+
+	start.playGame()
+
+	fmt.Println()
+	fmt.Println("Fin~")
 }
