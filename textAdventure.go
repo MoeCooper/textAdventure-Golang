@@ -1,5 +1,10 @@
 package main
 
+/* TO DOS */
+
+// Add NPCs (talk, fight)
+// Pick up items
+
 import (
 	"bufio"
 	"fmt"
@@ -68,7 +73,7 @@ func (node *storyNode) playGame() {
 }
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
+	scanner = bufio.NewScanner(os.Stdin)
 
 	start := storyNode{text: `
 		You are in a large room underground, 
@@ -78,7 +83,7 @@ func main() {
 		North takes you to darkness
 		South appears to head to upstairs
 		West is seemingly a safe choice, with no darkness and 
-		goes straight onwards
+		goes straight onwards 
 	`}
 
 	darkRoom := storyNode{text: `
